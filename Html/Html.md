@@ -65,7 +65,7 @@
     - [57. css reset 和 normalize.css 有什么区别？](#57-css-reset-和-normalizecss-有什么区别)
     - [58. 用于预格式化文本的标签是？](#58-用于预格式化文本的标签是)
     - [59. DHTML 是什么？](#59-dhtml-是什么)
-    - [60. head 标签中必不少的是？](#60-head-标签中必不少的是)
+    - [60. head 标签中必不可少的是？](#60-head-标签中必不可少的是)
     - [61. HTML5 新增的表单元素有？](#61-html5-新增的表单元素有)
     - [62. 在 HTML5 中，哪个方法用于获得用户的当前位置？](#62-在-html5-中哪个方法用于获得用户的当前位置)
     - [63. 文档的不同注释方式？](#63-文档的不同注释方式)
@@ -404,7 +404,7 @@
     回流：当渲染树中的一部分（或全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新构建的操作，会影响到布局的操作，这样
          的操作我们称为回流。
 
-    常见引起回流属性和方法：
+    常见引起回流属性和方法：css改变的颜色
 
     任何会改变元素几何信息（元素的位置和尺寸大小）的操作，都会触发回流。
 
@@ -503,18 +503,6 @@
     （3） 即使在没有样式 CSS 情况下也以一种文档格式显示，并且是容易阅读的;
     （4） 搜索引擎的爬虫也依赖于 HTML 标记来确定上下文和各个关键字的权重，利于 SEO ;
     （5） 使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。
-   ```
-
-   回答：
-   ```
-    我认为 html 语义化主要指的是我们应该使用合适的标签来划分网页内容的结构。html 的本质作用其实就是定义网页文档的结构，
-    一个语义化的文档，能够使页面的结构更加清晰，易于理解。这样不仅有利于开发者的维护和理解，同时也能够使机器对文档内容进
-    行正确的解读。比如说我们常用的 b 标签和 strong 标签，它们在样式上都是文字的加粗，但是 strong 标签拥有强调的语义。
-    对于一般显示来说，可能我们看上去没有差异，但是对于机器来说，就会有很大的不同。如果用户使用的是屏幕阅读器来访问网页的
-    话，使用 strong 标签就会有明显的语调上的变化，而 b 标签则没有。如果是搜索引擎的爬虫对我们网页进行分析的话，那么它会
-    依赖于 html 标签来确定上下文和各个关键字的权重，一个语义化的文档对爬虫来说是友好的，是有利于爬虫对文档内容解读的，
-    从而有利于我们网站的 SEO 。从 html5 我们可以看出，标准是倾向于以语义化的方式来构建网页的，比如新增了 header 、fo
-    oter 这些语义标签，删除了 big 、font 这些没有语义的标签。
    ```
    详细资料可以参考：
    [《语义化的 HTML 结构到底有什么好处？》](https://www.html.cn/archives/1668)
@@ -665,24 +653,6 @@
         cookie          在所有同源窗口中都是共享的。
    ```
 
-   回答：
-   ```
-    浏览器端常用的存储技术是 cookie 、localStorage 和 sessionStorage。
-
-    cookie 其实最开始是服务器端用于记录用户状态的一种方式，由服务器设置，在客户端存储，然后每次发起同源请求时，发送给服
-    务器端。cookie 最多能存储 4 k 数据，它的生存时间由 expires 属性指定，并且 cookie 只能被同源的页面访问共享。
-
-    sessionStorage 是 html5 提供的一种浏览器本地存储的方法，它借鉴了服务器端 session 的概念，代表的是一次会话中所保
-    存的数据。它一般能够存储 5M 或者更大的数据，它在当前窗口关闭后就失效了，并且 sessionStorage 只能被同一个窗口的同源
-    页面所访问共享。
-
-    localStorage 也是 html5 提供的一种浏览器本地存储的方法，它一般也能够存储 5M 或者更大的数据。它和 sessionStorage 
-    不同的是，除非手动删除它，否则它不会失效，并且 localStorage 也只能被同源页面所访问共享。
-
-    上面几种方式都是存储少量数据的时候的存储方式，当我们需要在本地存储大量数据的时候，我们可以使用浏览器的 indexDB 这是浏
-    览器提供的一种本地的数据库存储机制。它不是关系型数据库，它内部采用对象仓库的形式存储数据，它更接近 NoSQL 数据库。
-   ```
-
    详细的资料可以参考：
    [《请描述一下 cookies，sessionStorage 和 localStorage 的区别？》](https://segmentfault.com/a/1190000017423117)
    [《浏览器数据库 IndexedDB 入门教程》](http://www.ruanyifeng.com/blog/2018/07/indexeddb.html)
@@ -733,26 +703,6 @@
 
     （3）可以调用 localStorage、cookies 等本地存储方式，localStorge 另一个浏览上下文里被添加、修改或删除时，它都会触
         发一个 storage 事件，我们通过监听 storage 事件，控制它的值来进行页面信息通信；
-
-    （4）如果我们能够获得对应标签页的引用，通过 postMessage 方法也是可以实现多个标签页通信的。
-   ```
-    
-   回答：
-   ```
-    实现多个标签页之间的通信，本质上都是通过中介者模式来实现的。因为标签页之间没有办法直接通信，因此我们可以找一个中介者，
-    让标签页和中介者进行通信，然后让这个中介者来进行消息的转发。
-
-    第一种实现的方式是使用 websocket 协议，因为 websocket 协议可以实现服务器推送，所以服务器就可以用来当做这个中介者。
-    标签页通过向服务器发送数据，然后由服务器向其他标签页推送转发。
-
-    第二种是使用 ShareWorker 的方式，shareWorker 会在页面存在的生命周期内创建一个唯一的线程，并且开启多个页面也只会使
-    用同一个线程。这个时候共享线程就可以充当中介者的角色。标签页间通过共享一个线程，然后通过这个共享的线程来实现数据的交
-    换。
-
-    第三种方式是使用 localStorage 的方式，我们可以在一个标签页对 localStorage 的变化事件进行监听，然后当另一个标签页
-    修改数据的时候，我们就可以通过这个监听事件来获取到数据。这个时候 localStorage 对象就是充当的中介者的角色。
-
-    还有一种方式是使用 postMessage 方法，如果我们能够获得对应标签页的引用，我们就可以使用 postMessage 方法，进行通信。
    ```
    详细的资料可以参考：
 
@@ -762,6 +712,7 @@
    [《使用 Web Storage API》](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
    [《JavaScript 的多线程，Worker 和 SharedWorker》](https://www.zhuwenlong.com/blog/article/590ea64fe55f0f385f9a12e5)
    [《实现多个标签页之间通信的几种方法》](https://juejin.im/post/5acdba01f265da23826e5633#heading-1)
+   [《SharedWorker 让你多个页面相互通信》](https://juejin.cn/post/7173701460947894308)
   
 
 #### 41. webSocket 如何兼容低版本浏览器？
@@ -799,7 +750,7 @@
    ```
    详细资料可以参考：
    [《如何在页面上实现一个圆形的可点击区域？》](https://maizi93.github.io/2017/08/29/%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%B8%8A%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%9C%86%E5%BD%A2%E7%9A%84%E5%8F%AF%E7%82%B9%E5%87%BB%E5%8C%BA%E5%9F%9F%EF%BC%9F/)
-   [《HTML <area><map> 标签及在实际开发中的应用》](https://www.zhangxinxu.com/wordpress/2017/05/html-area-map/)
+   [《HTML area/map 标签及在实际开发中的应用》](https://www.zhangxinxu.com/wordpress/2017/05/html-area-map/)
 
 
 #### 44. 实现不使用 border 画出 1 px 高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。
@@ -817,7 +768,7 @@
    ```
     title 通常当鼠标滑动到元素上的时候显示
 
-    alt 是 <img> 的特有属性，是图片内容的等价描述，用于图片无法加载时显示、读屏器阅读图片。可提图片高可访问性，除了纯装
+    alt 是 <img> 的特有属性，是图片内容的等价描述，用于图片无法加载时显示、读屏器阅读图片。可提高图片可访问性，除了纯装
     饰图片外都必须设置有意义的值，搜索引擎会重点分析。
    ```
 
@@ -922,14 +873,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>   优先使用 IE 最新版本和 Chrome
     <meta name="description" content="不超过150个字符"/>       页面描述
     <meta name="keywords" content=""/>      页面关键词者
-    <meta name="author" content="name, email@gmail.com"/>    网页作
+    <meta name="author" content="name, email@gmail.com"/>    网页作者信息
     <meta name="robots" content="index,follow"/>      搜索引擎抓取
     <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no"> 为移动设备添加 viewport
     <meta name="apple-mobile-web-app-title" content="标题"> iOS 设备 begin
-    <meta name="apple-mobile-web-app-capable" content="yes"/>  添加到主屏后的标题（iOS 6 新增）
-    是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏
+    <meta name="apple-mobile-web-app-capable" content="yes"/>  添加到主屏后的标题（iOS 6 新增）是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏
     <meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
-    添加智能 App 广告条 Smart App Banner（iOS 6+ Safari）
+    添加智能 App 广告条 Smart App Banner（iOS 6 + Safari）
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <meta name="format-detection" content="telphone=no, email=no"/>  设置苹果工具栏颜色
     <meta name="renderer" content="webkit">  启用360浏览器的极速模式(webkit)
@@ -944,8 +894,7 @@
     <meta name="browsermode" content="application">   UC应用模式
     <meta name="x5-page-mode" content="app">    QQ应用模式
     <meta name="msapplication-tap-highlight" content="no">    windows phone 点击无高光
-    设置页面不缓存
-    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache"> 设置页面不缓存
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
    ```
@@ -1037,7 +986,7 @@
         式”即可以“动态”地改变排版样式。
    ```
 
-#### 60. head 标签中必不少的是？
+#### 60. head 标签中必不可少的是？
    ```
     <head> 标签用于定义文档的头部，它是所有头部元素的容器。<head> 中的元素可以引用脚本、指示浏览器在哪里找到样式表、提供
     元信息等等。
@@ -1061,7 +1010,23 @@
 
 #### 62. 在 HTML5 中，哪个方法用于获得用户的当前位置？
    ```
-    getCurrentPosition()
+   /**JavaScript 中的 getCurrentPosition 是 Geolocation API 提供的一个方法，用于获取用户的当前位置信息。它通常与 navigator.geolocation 对象一起使用。
+   navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+   successCallback 是一个回调函数，用于处理获取位置信息成功时的情况。该函数将接收一个 Position 对象作为参数，其中包含了用户的位置信息。
+   errorCallback 是一个回调函数，用于处理获取位置信息失败时的情况。该函数将接收一个 PositionError 对象作为参数，其中包含了错误信息。
+   options 是一个可选的参数对象，用于指定一些选项，如超时时间等。*/
+   示例：
+   function successCallback(position) {
+     console.log('Latitude: ' + position.coords.latitude);
+     console.log('Longitude: ' + position.coords.longitude);
+   }
+   
+   function errorCallback(error) {
+     console.error('Error code: ' + error.code);
+     console.error('Error message: ' + error.message);
+   }
+
+   navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
    ```
 
 #### 63. 文档的不同注释方式？
